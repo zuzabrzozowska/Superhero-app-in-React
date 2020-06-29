@@ -1,27 +1,14 @@
 import React from 'react';
 import './App.css';
-import { getAndRenderHeroServer } from './axios';
+import { getHeroId } from './axios';
+
+const myHeroes = [317, 87, 624, 204]
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state= {
-      hero: {
-        name: '',
-        image: ''
-      },
-      
-      hero2: {
-        name: '',
-        image: ''
-      },
-
-      hero3: {
-        name: '',
-        image: ''
-      },
-
       heroList: [],
     }
 
@@ -29,26 +16,15 @@ class App extends React.Component {
 
   getAndRenderHero = () => {
 
-    
-    getAndRenderHeroServer(317).then (response => {
-      this.setState({hero: response.data})
-      this.state.heroList.push(this.state.hero)
-    })
+    const heroes = [];
 
-    getAndRenderHeroServer(624).then (response => {
-      this.setState({hero2: response.data}) 
-      this.state.heroList.push(this.state.hero2)
+    myHeroes.forEach(id => {
+      getHeroId(id).then (response => {
+        heroes.push(response.data);
+        this.setState({heroList: heroes});
+      })
+      //this.setState({heroList: heroes});
     })
-  
-    getAndRenderHeroServer(87).then (response => {
-      this.setState({hero3: response.data}) 
-      this.state.heroList.push(this.state.hero3)
-    })
-  
-    //why this push doesnt work ?
-    //this.state.heroList.push(this.state.hero, this.state.hero2, this.state.hero3);
-
-    //why render always sees one less elements in heroList?
 
   }
   
