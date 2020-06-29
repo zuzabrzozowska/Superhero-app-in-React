@@ -28,18 +28,30 @@ class App extends React.Component {
   }
 
   getAndRenderHero = () => {
+
+    
     getAndRenderHeroServer(317).then (response => {
       this.setState({hero: response.data})
-      //push hero to heroList
-    })
-    getAndRenderHeroServer(624).then (response => {
-      this.setState({hero2: response.data}) 
-    })
-    getAndRenderHeroServer(87).then (response => {
-      this.setState({hero3: response.data}) 
+      this.state.heroList.push(this.state.hero)
     })
 
+    getAndRenderHeroServer(624).then (response => {
+      this.setState({hero2: response.data}) 
+      this.state.heroList.push(this.state.hero2)
+    })
+  
+    getAndRenderHeroServer(87).then (response => {
+      this.setState({hero3: response.data}) 
+      this.state.heroList.push(this.state.hero3)
+    })
+  
+    //why this push doesnt work ?
+    //this.state.heroList.push(this.state.hero, this.state.hero2, this.state.hero3);
+
+    //why render always sees one less elements in heroList?
+
   }
+  
 
   componentDidMount = () => {
     this.getAndRenderHero();
@@ -63,23 +75,17 @@ class App extends React.Component {
           <div className="container">
             <h1 className="about-hero__maintitle">featured heroes</h1>
             <div className="container__heroes">
-              
-              
-              <div className="about-hero">
-                <p className="about-hero__title">{this.state.hero.name}</p>
-                <img className="about-hero__img" src={this.state.hero.image.url} alt="hero"></img>
-              </div>
-
-              <div className="about-hero">
-                <p className="about-hero__title">{this.state.hero2.name}</p>
-                <img className="about-hero__img" src={this.state.hero2.image.url} alt="hero"></img>
-              </div>
-
-              <div className="about-hero">
-                <p className="about-hero__title">{this.state.hero3.name}</p>
-                <img className="about-hero__img" src={this.state.hero3.image.url} alt="hero"></img>
-              </div>
-
+          
+              {
+                this.state.heroList.map(hero => {
+                  return (
+                    <div className="about-hero" key={hero.id}>
+                      <p className="about-hero__title">{hero.name}</p>
+                      <img className="about-hero__img" src={hero.image.url} alt="hero"></img>
+                    </div>
+                  )
+                })
+              }
             </div>
           </div>
         </main>

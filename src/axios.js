@@ -6,4 +6,3 @@ export const getAndRenderHeroServer = (id) => {
     );
 }
 
-//axios.get('https://superheroapi.com/api/3084557188290018/73')
