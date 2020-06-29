@@ -1,30 +1,44 @@
 import React from 'react';
 import './App.css';
-import { getAndRenderHeroS } from './axios';
+import { getAndRenderHeroServer } from './axios';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state= {
-      heroList: [],
       hero: {
         name: '',
         image: ''
-      }
+      },
+      
+      hero2: {
+        name: '',
+        image: ''
+      },
+
+      hero3: {
+        name: '',
+        image: ''
+      },
+
+      heroList: [],
     }
 
   }
 
   getAndRenderHero = () => {
-    getAndRenderHeroS(317).then (response => {
-      this.setState({hero: response.data}) 
-      //console.log(this.state.hero)
+    getAndRenderHeroServer(317).then (response => {
+      this.setState({hero: response.data})
+      //push hero to heroList
     })
-    getAndRenderHeroS(73).then (response => {
-      this.setState({heroList: response.data}) 
-      console.log(this.state.heroList)
+    getAndRenderHeroServer(624).then (response => {
+      this.setState({hero2: response.data}) 
     })
+    getAndRenderHeroServer(87).then (response => {
+      this.setState({hero3: response.data}) 
+    })
+
   }
 
   componentDidMount = () => {
@@ -49,13 +63,23 @@ class App extends React.Component {
           <div className="container">
             <h1 className="about-hero__maintitle">featured heroes</h1>
             <div className="container__heroes">
-               
+              
+              
               <div className="about-hero">
                 <p className="about-hero__title">{this.state.hero.name}</p>
                 <img className="about-hero__img" src={this.state.hero.image.url} alt="hero"></img>
               </div>
-              <div className="about-hero"></div>
-              <div className="about-hero"></div>
+
+              <div className="about-hero">
+                <p className="about-hero__title">{this.state.hero2.name}</p>
+                <img className="about-hero__img" src={this.state.hero2.image.url} alt="hero"></img>
+              </div>
+
+              <div className="about-hero">
+                <p className="about-hero__title">{this.state.hero3.name}</p>
+                <img className="about-hero__img" src={this.state.hero3.image.url} alt="hero"></img>
+              </div>
+
             </div>
           </div>
         </main>

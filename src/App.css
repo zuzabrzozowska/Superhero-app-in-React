@@ -20,8 +20,25 @@ nav {
   color: pink;
 }
 
+button {
+  cursor: pointer;
+  padding: 5px;
+  background: pink;
+  border: none;
+  border-radius: 3px;
+  font-family: inherit;
+  margin-left: 5px;
+}
+
+input {
+  padding: 3px;
+}
+
 .about-hero__maintitle {
+  text-align: center;
+  font-size: 40px;
   color: purple;
+  font-family: 'Abril Fatface', cursive;
 }
 
 .container__heroes {
@@ -41,10 +58,11 @@ nav {
 }
 
 .about-hero__title {
+  text-align: center;
   margin: 10px;
   color: purple;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .about-hero__img {
