@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+const APIkey = '';
+//paste your key
+
 export const getHeroId = id => {
     return (
-        axios.get(`https://superheroapi.com/api/3084557188290018/${id}`)
+        axios.get(`https://superheroapi.com/api/${APIkey}/${id}`)
     );
 }
 
