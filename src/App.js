@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import { getHeroId } from './axios';
 
-const myHeroes = [317, 87, 624]
+const myHeroes=[];
+let value;
 
 class App extends React.Component {
   constructor() {
@@ -15,33 +16,45 @@ class App extends React.Component {
   }
 
   getAndRenderHero = async () => {
-
-    const heroes = [];
-
+    const heroes = []; //throwaway array
     for (const id of myHeroes) {
       const data = await getHeroId(id);
       heroes.push(data);
       this.setState({heroList: heroes});
     }
-    
-    
-    /*
-    If you want to read the files in sequence, you cannot use forEach. Use a modern for … of loop instead
-      
-      myHeroes.forEach(id => {
-        getHeroId(id).then (response => {
-        heroes.push(response.data);
-        this.setState({heroList: heroes});
-      })
-    }) */
-
-
   }
   
+  saveHeroInput = event => {
+    value = event.target.value;
+  }
+
+  findHeroInput = event => {
+    event.preventDefault();
+
+    myHeroes.push(Math.floor(value));
+
+    myHeroes.length > 3 ? myHeroes.shift([0]) : console.log(myHeroes);
+
+    this.getAndRenderHero();
+    document.getElementById('form').reset();
+  }
+
+  /*
+  deleteHero = id => {
+    const heroes = this.state.heroList.filter(item => {
+      if (item.data.id !== id) {
+        getHeroId(id);
+        this.setState({heroList: heroes});  
+      }
+    })
+  }
+  */
+
   componentDidMount = () => {
     this.getAndRenderHero();
   }
 
+  //{myHeroes && <p>find your heroes!</p> }
   render() {
     return (
       <React.Fragment>
@@ -49,13 +62,12 @@ class App extends React.Component {
         <nav>
           <div className="container container__nav">
             <span>superhero app</span>
-            <form>
-              <input type="text"></input>
-              <button>find hero</button>
+            <form id="form">
+              <input onChange={this.saveHeroInput} type="text"></input>
+              <button onClick={this.findHeroInput}>find hero</button>
             </form>
           </div>
         </nav>
-
         <main>
           <div className="container">
             <h1 className="about-hero__maintitle">featured heroes</h1>
@@ -64,10 +76,21 @@ class App extends React.Component {
                 this.state.heroList.map(hero => {
                   return (
                     <div className="about-hero" key={hero.data.id}>
+                      <button /* onClick={this.deleteHero(hero.data.id)}*/ className="delete">&times;</button>
+
                       <p className="about-hero__title">{hero.data.name}</p>
                       <img className="about-hero__img" src={hero.data.image.url} alt="hero"></img>
+
+                      <p className="about-hero__title">{hero.data.biography.alignment}</p>
+
+                      <p className={((hero.data.powerstats.intelligence)> 50 ? "bold" : "")}>intelligence: {hero.data.powerstats.intelligence}</p>
+                      
+                      <p>speed: {hero.data.powerstats.speed}</p>
+                      
+                      <p>base: {hero.data.work.base}</p>
+                      <p>occupation: {hero.data.work.occupation}</p>
                     </div>
-                  )
+                  );
                 })
               }
             </div>

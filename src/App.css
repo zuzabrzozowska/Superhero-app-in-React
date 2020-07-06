@@ -2,9 +2,18 @@ body {
   background: pink;
 }
 
+p {
+  margin: 0;
+  font-size: 12px;
+}
+
 .container {
   margin: 0 auto;
   width: 95%;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .container__nav {
@@ -35,6 +44,7 @@ input {
 }
 
 .about-hero__maintitle {
+  
   text-align: center;
   font-size: 40px;
   color: purple;
@@ -51,10 +61,13 @@ input {
 .about-hero {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-align: center;
   background: white;
-  height: 300px;
-  width: 200px;
+  border: 1px solid purple;
+  border-radius: 5px;
+  width: 250px;
 }
 
 .about-hero__title {
@@ -68,4 +81,9 @@ input {
 .about-hero__img {
   border-radius: 5px;
   width: 150px;
+}
+
+.delete {
+  align-self: flex-end;
+  padding: 5px 12px;
 }
