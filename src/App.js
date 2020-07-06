@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { getHeroId } from './axios';
 
-const myHeroes=[];
+let myHeroes=[];
 let value;
 
 class App extends React.Component {
@@ -11,7 +11,9 @@ class App extends React.Component {
 
     this.state= {
       heroList: [],
+      isLoading: true
     }
+    
 
   }
 
@@ -22,6 +24,7 @@ class App extends React.Component {
       heroes.push(data);
       this.setState({heroList: heroes});
     }
+    this.setState({isLoading: false})
   }
   
   saveHeroInput = event => {
@@ -33,28 +36,30 @@ class App extends React.Component {
 
     myHeroes.push(Math.floor(value));
 
-    myHeroes.length > 3 ? myHeroes.shift([0]) : console.log(myHeroes);
+    if (myHeroes.length > 3) { 
+      myHeroes.shift([0])
+    }
 
     this.getAndRenderHero();
     document.getElementById('form').reset();
   }
 
-  /*
+  
   deleteHero = id => {
-    const heroes = this.state.heroList.filter(item => {
-      if (item.data.id !== id) {
-        getHeroId(id);
-        this.setState({heroList: heroes});  
-      }
+
+    myHeroes = myHeroes.filter(item => {
+      return (item !== Math.floor(id));
     })
+    this.setState({heroList: myHeroes});
+    //dlaczego dziala dla jednego ID? lub gdy 2 elementy z tym samym id?
+    //tutaj heroList nie jest jeszcze zmienione? async??
   }
-  */
+  
 
   componentDidMount = () => {
     this.getAndRenderHero();
   }
 
-  //{myHeroes && <p>find your heroes!</p> }
   render() {
     return (
       <React.Fragment>
@@ -76,7 +81,7 @@ class App extends React.Component {
                 this.state.heroList.map(hero => {
                   return (
                     <div className="about-hero" key={hero.data.id}>
-                      <button /* onClick={this.deleteHero(hero.data.id)}*/ className="delete">&times;</button>
+                      <button onClick={() => this.deleteHero(hero.data.id)} className="delete">&times;</button>
 
                       <p className="about-hero__title">{hero.data.name}</p>
                       <img className="about-hero__img" src={hero.data.image.url} alt="hero"></img>
