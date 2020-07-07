@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { getHeroId } from './axios';
 
-let myHeroes=[];
+//let myHeroes=[];
 let value;
 
 class App extends React.Component {
@@ -11,15 +11,15 @@ class App extends React.Component {
 
     this.state= {
       heroList: [],
+      myHeroesID: [],
       isLoading: true
     }
-    
-
+  
   }
 
   getAndRenderHero = async () => {
     const heroes = []; //throwaway array
-    for (const id of myHeroes) {
+    for (const id of this.state.myHeroesID) {
       const data = await getHeroId(id);
       heroes.push(data);
       this.setState({heroList: heroes});
@@ -34,10 +34,10 @@ class App extends React.Component {
   findHeroInput = event => {
     event.preventDefault();
 
-    myHeroes.push(Math.floor(value));
+    this.state.myHeroesID.push(Math.floor(value));
 
-    if (myHeroes.length > 3) { 
-      myHeroes.shift([0])
+    if (this.state.myHeroesID.length > 3) { 
+      this.state.myHeroesID.shift([0])
     }
 
     this.getAndRenderHero();
@@ -45,14 +45,15 @@ class App extends React.Component {
   }
 
   
-  deleteHero = id => {
-
-    myHeroes = myHeroes.filter(item => {
-      return (item !== Math.floor(id));
+  deleteHero = (id) => {
+    const myHeroes = this.state.heroList.filter(item => {
+      return (item.data.id !== id);
     })
     this.setState({heroList: myHeroes});
-    //dlaczego dziala dla jednego ID? lub gdy 2 elementy z tym samym id?
-    //tutaj heroList nie jest jeszcze zmienione? async??
+    const heroesIDS = this.state.myHeroesID.filter(item => {
+      return (item !== Math.floor(id));
+    })
+    this.setState({myHeroesID: heroesIDS});
   }
   
 
@@ -82,18 +83,15 @@ class App extends React.Component {
                   return (
                     <div className="about-hero" key={hero.data.id}>
                       <button onClick={() => this.deleteHero(hero.data.id)} className="delete">&times;</button>
-
+                      
                       <p className="about-hero__title">{hero.data.name}</p>
                       <img className="about-hero__img" src={hero.data.image.url} alt="hero"></img>
 
                       <p className="about-hero__title">{hero.data.biography.alignment}</p>
 
                       <p className={((hero.data.powerstats.intelligence)> 50 ? "bold" : "")}>intelligence: {hero.data.powerstats.intelligence}</p>
-                      
-                      <p>speed: {hero.data.powerstats.speed}</p>
-                      
-                      <p>base: {hero.data.work.base}</p>
                       <p>occupation: {hero.data.work.occupation}</p>
+                      
                     </div>
                   );
                 })
