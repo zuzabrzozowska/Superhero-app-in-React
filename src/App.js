@@ -111,7 +111,20 @@ function App() {
                   </div>
                 </Route>
                 <Route path="/search/:name">
-                    <h1>TEST</h1>
+                  {results.data && <div className="container__heroes">
+                      {
+                        results.map(result => {
+                          const {id, name} = result.data;
+                          return (
+                            <div className="about-hero" key={id}>
+                              <p className="about-hero__title">{name}</p>
+                              <img className="about-hero__img" src={result.data.image.url} alt="hero"></img>
+                            </div>
+                          );
+                        })
+                      }
+                    </div>
+                  }  
                 </Route>
 
                 <Route path="/search/:id">
