@@ -7,3 +7,6 @@ export const getHero = id => {
     return axios.get(`https://superheroapi.com/api/${APIkey}/${id}`)  
 }
 
+export const getSearchedHeroesByName = name => {
+    return axios.get(`https://superheroapi.com/api/${APIkey}/search/${name}`)  
+}

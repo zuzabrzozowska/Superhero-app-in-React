@@ -1,9 +1,15 @@
+/* @keyframes rotate {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+} */
+
 body {
   background: pink;
 }
 
 p {
   margin: 0;
+  padding: 5px;
   font-size: 12px;
 }
 
@@ -15,6 +21,21 @@ p {
 .bold {
   font-weight: bold;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+.app-logo {
+  text-align: center;
+  background: pink;
+  color: purple;
+  padding: 3px;
+  font-size: 1.2em;
+}
+/*.rotate {
+  animation: rotate 15s infinite;
+} */
 
 .container__nav {
   display: flex;
@@ -43,15 +64,24 @@ input {
   padding: 3px;
 }
 
-form:before {
-  content: 'type in ID number (1-731) ';
-  display: block;
+form {
+  position: relative;
+}
+
+.results-box {
+  position: absolute;
+  top: 25px;
+  font-weight: bold;
+  width: 150px;
+  border: purple 1px solid;
+  right: 115px;
+  color: purple;
+  background: white;
 }
 
 .about-hero__maintitle {
-  
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   color: purple;
   font-family: 'Abril Fatface', cursive;
 }
@@ -60,7 +90,6 @@ form:before {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 50vh;
 }
 
 .about-hero {
@@ -69,8 +98,8 @@ form:before {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: white;
-  border: 1px solid purple;
+  background: #130c0c;
+  color: pink;
   border-radius: 5px;
   width: 250px;
 }
@@ -78,7 +107,7 @@ form:before {
 .about-hero__title {
   text-align: center;
   margin: 10px;
-  color: purple;
+  color: pink;
   font-weight: bold;
   font-size: 20px;
 }
