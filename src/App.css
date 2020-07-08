@@ -43,6 +43,11 @@ input {
   padding: 3px;
 }
 
+form:before {
+  content: 'type in ID number (1-731) ';
+  display: block;
+}
+
 .about-hero__maintitle {
   
   text-align: center;
