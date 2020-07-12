@@ -3,12 +3,13 @@ import './App.css';
 import Nav from './Nav.js'; 
 import OurInitialPage from './OurInitialPage.js';
 import SearchResults from './SearchResults.js';
+import HeroDetails from './HeroDetails.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   
   return (
-    <>
+    
       <Router>
         <Nav />
         <main>
@@ -23,15 +24,15 @@ function App() {
                   <SearchResults />  
                 </Route>
 
-                <Route path="/search/:id">
-
+                <Route path="/:id">
+                  <HeroDetails />
                 </Route>
           
               </Switch>
             </div>
         </main>
       </Router>
-    </>  
+    
   );
 
 }
