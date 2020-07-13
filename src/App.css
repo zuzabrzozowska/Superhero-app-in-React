@@ -1,9 +1,15 @@
+/* @keyframes rotate {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+} */
+
 body {
   background: pink;
 }
 
 p {
   margin: 0;
+  padding: 5px;
   font-size: 12px;
 }
 
@@ -15,6 +21,27 @@ p {
 .bold {
   font-weight: bold;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-logo {
+  text-align: center;
+  background: purple;
+  border: 4px pink dotted;
+  padding: 5px;
+  font-size: 1.2em;
+  font-family: 'Gochi Hand', cursive;
+}
+/*.rotate {
+  animation: rotate 15s infinite;
+} */
 
 .container__nav {
   display: flex;
@@ -39,23 +66,46 @@ button {
   margin-left: 5px;
 }
 
+.btn-search {
+  padding: 10px;
+  margin-left: 10px;
+  background: pink;
+  color: purple;
+  border-radius: 3px;
+}
+
 input {
-  padding: 3px;
+  padding: 10px;
+  font-family: inherit;
+}
+
+form {
+  position: relative;
+}
+
+.results-box {
+  position: absolute;
+  top: 40px;
+  font-weight: bold;
+  width: 150px;
+  border: lightgrey 1px solid;
+  right: 70px;
+  color: purple;
+  background: white;
 }
 
 .about-hero__maintitle {
-  
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   color: purple;
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Gochi Hand', cursive;
 }
 
 .container__heroes {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  height: 50vh;
 }
 
 .about-hero {
@@ -65,9 +115,11 @@ input {
   align-items: center;
   text-align: center;
   background: white;
-  border: 1px solid purple;
+  color: purple;
   border-radius: 5px;
   width: 250px;
+  padding: 5px;
+  margin: 5px;
 }
 
 .about-hero__title {
