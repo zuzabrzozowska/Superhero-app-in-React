@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getHeroDetails } from 'axios';
+import { getFullHero } from 'axios';
 
 function HeroDetails() {
-    const { id } = useParams();
+    const { id, name } = useParams();
     const [hero, setHero] = useState({});
+    const [errorText, setErrorText] = useState('');
+    const [loading, setLoading] = useState(true);
+
+    const getMyDetailedHero = async () => {
+        //--> "Uncaught (in promise) TypeError: Object(...) is not a function" 
+        const fullHero = await getFullHero(id);
+        setHero(fullHero);
+        setLoading(false);
+    }
 
     useEffect(() => {
-        getHeroDetails(id).then(response => {
-
-            console.log('id', id); //--> TypeError: Object(...) is not a function
-            /*
-            if (data.error) {
-               console.log(data.error);
-                return;
-            }
-            setHero(data);
-            if (data.appearance.gender !== "Female") {
-                console.log('superheroine with this id not found');
-            } */
-        })
+       getMyDetailedHero();
     }, [id])
 
     return (
-        <h1>hello</h1>
+        <>
+            <h1 className="about-hero__maintitle">All about {name} :</h1>
+            { errorText && <h1>{errorText}</h1>}
+            { loading && <h1 className="about-hero__maintitle">loading........</h1>}
+
+            { !loading && <h1 className="about-hero__maintitle"> now {name} is available to map</h1>}
+            </>
     )
 }
 

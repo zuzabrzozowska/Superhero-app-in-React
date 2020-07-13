@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css'; 
 import Nav from './Nav.js'; 
-import OurInitialPage from './OurInitialPage.js';
+import LandingPage from './LandingPage.js';
 import SearchResults from './SearchResults.js';
 import HeroDetails from './HeroDetails.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -17,14 +17,14 @@ function App() {
               <Switch>
 
                 <Route exact path="/">
-                  <OurInitialPage />
+                  <LandingPage />
                 </Route>
 
                 <Route path="/search/:name">
                   <SearchResults />  
                 </Route>
 
-                <Route path="/:id">
+                <Route path="/:id/:name">
                   <HeroDetails />
                 </Route>
           

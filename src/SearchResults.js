@@ -21,35 +21,38 @@ function SearchResults() {
             if (results) {
                 results = results.filter(item => {return (item.appearance.gender === "Female") });
                 setSearchResults(results);
+                setLoading(false);
             } 
         })
-        setLoading(false);
+        
     }, [name])
 
     return (
         <>
-            {loading && <p>Loading search results...</p>}
+            <h1 className="about-hero__maintitle">results for: "{name}"</h1>
+
+            {loading && <h1 className="about-hero__maintitle">loading......</h1>}
 
             {!loading && 
                 <main className="container">
-                    <h1 className="about-hero__maintitle">results for: "{name}"</h1>
+                    
                         
                     <section className="container__heroes">
                         { errorText && <p className="about-hero__maintitle">{errorText}</p> }
                         
                             
-                        { searchResults.map(item => {
+                        { searchResults.map(({id, name, image, work, biography }) => {
                             return (
-                                <div className="about-hero" key={item.id}>
-                                    <h2 className="about-hero__title">{item.name}</h2>
-                                        <h3>{item.biography.alignment}</h3>
+                                <div className="about-hero" key={id}>
+                                    <h2 className="about-hero__title">{name}</h2>
+                                    <h3>{biography.alignment}</h3>
                                         
-                                    <img className="about-hero__img" src={item.image.url} alt="hero"></img>
+                                    <img className="about-hero__img" src={image.url} alt="hero"></img>
                                         
-                                    { item.work.occupation !=='-' && <p>{item.work.occupation}</p>}
-                                    { item.work.occupation ==='-' && <p>unknown occupation</p>}
+                                    { work.occupation !=='-' && <p>{work.occupation}</p>}
+                                    { work.occupation ==='-' && <p>occupation unknown</p>}
 
-                                    <Link className="link" to={`/${item.id}`}><button>More...</button></Link>
+                                    <Link className="link" to={`/${id}/${name}`}><button>More...</button></Link>
                                 </div>
                             );  
                         })}
