@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getHeroPreview } from './axios';
+import { getHeroPreview } from './requests';
 import { Link } from 'react-router-dom';
 
 function LandingPage() {

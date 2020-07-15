@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getSearchedHeroesByName } from './axios';
+import { getSearchedHeroesByName } from './requests';
 import { Link } from 'react-router-dom';
 
 function Nav() {
@@ -19,8 +19,8 @@ function Nav() {
             let res = response.data.results;
               
             if (response.data.error) {
-                //error exists but sometimes doesnt appear
               setErrorText(response.data.error);
+              setResults([]);
               setLoading(false);
               return;
             }
@@ -48,7 +48,7 @@ function Nav() {
                 </Link>
                 <div className="results-box">
                   { errorText && <p>{errorText}</p> }
-                  { !errorText && loading && /*inputValue && */<p>loading........</p>}
+                  { !errorText && loading && <p>loading........</p>}
                   { 
                     results && inputValue && !loading &&
                     <div>{results.map(item => 

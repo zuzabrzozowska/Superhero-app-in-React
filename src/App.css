@@ -135,7 +135,29 @@ form {
   width: 150px;
 }
 
-.delete {
-  align-self: flex-end;
-  padding: 5px 12px;
+.details-container {
+  display: flex;
+  justify-content: space-evenly;
+  background: white;
+  border-radius: 10px;
+}
+
+.details-box {
+  display: flex;
+  flex-direction: column;
+  color: purple;
+  padding: 0 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.details-subtitle {
+  font-family: 'Gochi Hand', cursive;
+}
+
+.details-image {
+  margin: 10px;
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
 }
