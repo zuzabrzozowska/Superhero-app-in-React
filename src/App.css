@@ -1,6 +1,7 @@
 :root {
   --darkViolet: #221e37;
   --lightViolet: #74446c;
+  --coldViolet: #463778;
 }
 
 body {
@@ -15,7 +16,7 @@ li, p {
 }
 
 i {
-  color: #74446c;
+  color: var(--lightViolet);
 }
 
 .container {
@@ -33,7 +34,22 @@ i {
   cursor: pointer;
 }
 
+button {
+  cursor: pointer;
+  font-family: inherit;
+  padding: 5px;
+  width: 70px;
+}
+
+button:hover {
+  background-color: var(--lightViolet);
+}
+
 /*settings*/
+
+.fa-cog:hover {
+  color: var(--coldViolet);
+}
 
 .container__nav {
   height: 80vh;
@@ -42,30 +58,8 @@ i {
   justify-content: space-evenly;
 }
 
-.btn-search {
-  padding: 10px;
-  margin-left: 10px;
-  border-radius: 3px;
-}
-
-input {
-  padding: 10px;
-  font-family: inherit;
-}
-
-form {
-  position: relative;
-}
-
-.results-box {
-  position: absolute;
-  top: 40px;
-  font-weight: bold;
-  width: 150px;
-  border: lightgrey 1px solid;
-  right: 70px;
-  color: purple;
-  background: white;
+.settings__btn-box {
+  display: flex;
 }
 
 /*LandingPage*/
@@ -120,10 +114,12 @@ form {
 .btn-round--no {
   background: #e16499;
   font-size: 50px;
+  box-shadow: 2px 4px 20px 2px #e16499;
 }
 .btn-round--yes {
   background: #00cb51;
   font-size: 30px;
+  box-shadow: 2px 4px 20px 2px #00cb51;
 }
 
 .btn-round--small {
