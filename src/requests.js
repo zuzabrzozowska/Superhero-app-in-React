@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const APIkey = '';
+const APIkey = '3084557188290018';
 //paste in your key
 
 export const getHeroPreview = async id => {
@@ -11,6 +11,10 @@ export const getHeroPreview = async id => {
     return { powerstats, url: image.url, name: powerstats.name, id }
 }
 
+export const getHeroAppearence = async id => {
+    const {data} = await axios.get(`https://superheroapi.com/api/${APIkey}/${id}/appearance`);
+    return data;
+}
 export const getSearchedHeroesByName = name => {
     return axios.get(`https://superheroapi.com/api/${APIkey}/search/${name}`);
 }

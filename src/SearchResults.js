@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { getSearchedHeroesByName } from './requests';
+import { getHeroPreview } from './requests';
 import { useParams, Link } from 'react-router-dom';
 
 
 function SearchResults() {
-    const { name } = useParams();
-    const [searchResults, setSearchResults] = useState([]);
+    //params -- filteredResults list ?
+    const [filteredResults, setFilteredResults] = useState([]);
     const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(true);
+    const id = 1;
+
+
 
     useEffect(() => {
-        getSearchedHeroesByName(name).then(response => {
+        getHeroPreview(id).then(response => {
             const {data} = response;
             if (data.error) {
                 setErrorText(data.error);
@@ -20,39 +23,37 @@ function SearchResults() {
 
             if (results) {
                 results = results.filter(item => {return (item.appearance.gender === "Female") });
-                setSearchResults(results);
+                setFilteredResults(results);
                 setLoading(false);
             } 
         })
         
-    }, [name])
+    }, [])
 
     return (
         <>
-            <h1 className="about-hero__maintitle">results for: "{name}"</h1>
-
-            {loading && <h1 className="about-hero__maintitle">loading......</h1>}
+            {loading && <h1 className="about-hero__maintitle">loading...</h1>}
 
             {!loading && 
                 <main className="container">
-                    
-                        
                     <section className="container__heroes">
                         { errorText && <p className="about-hero__maintitle">{errorText}</p> }
                         
                             
-                        { searchResults.map(({id, name, image, work, biography }) => {
+                        { filteredResults.map(({ id, url, name }) => {
                             return (
                                 <div className="about-hero" key={id}>
-                                    <h2 className="about-hero__title">{name}</h2>
-                                    <h3>{biography.alignment}</h3>
-                                        
-                                    <img className="about-hero__img" src={image.url} alt="hero"></img>
-                                        
-                                    { work.occupation !=='-' && <p>{work.occupation}</p>}
-                                    { work.occupation ==='-' && <p>occupation unknown</p>}
-
-                                    <Link className="link" to={`/${id}/${name}`}><button>More...</button></Link>
+                                    <Link className="link" to={`/${id}/${name}`}>
+                                        <div className="about-hero__img" style={{backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                                            <p className="about-hero__title">{name}</p>
+                                        </div>
+                                    </Link>
+                                    <div className="btn-box">
+                                        <span className="btn-round btn-round--small">?</span>
+                                        <span className="btn-round btn-round--no">&times;</span>
+                                        <span className="btn-round btn-round--yes">&#10004;</span>
+                                        <span className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></span>
+                                    </div>
                                 </div>
                             );  
                         })}
