@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getHeroPreview } from './requests';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 function LandingPage() {
-    const initialHeroesIDs = ['107', '720', '444'];
+    const initialHeroesIDs = ['720', '69'];
     const [heroList, setHeroList] = useState([]);
     const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(true);
@@ -31,28 +31,34 @@ function LandingPage() {
 
     return ( 
         <> 
-            <h1 className="about-hero__maintitle">featured superheroines</h1>
+            <Link to="/settings"><i style={{fontSize: '30px'}}className="fas fa-cog"></i></Link>
             {errorText && <h1 className="about-hero__maintitle">{errorText}</h1>}
-            {!errorText && loading && <h1 className="about-hero__maintitle">loading........</h1>}
+            {!errorText && loading && <h1 className="about-hero__maintitle">loading</h1>}
+
             {!errorText && !loading &&
                 <div className="container__heroes">
                     {
-                        heroList.map(({id, powerstats, url, name}) => {
+                        heroList.map(({id, url, name}) => {
                             return (
                                 <div className="about-hero" key={id}>
-                                    <p className="about-hero__title">{name}</p>
-                                    <img className="about-hero__img" src={url} alt="hero"></img>
-                                    <p>intelligence: {powerstats.intelligence}</p>
-                                    <p>combat: {powerstats.combat}</p>
-                                    <p>strength: {powerstats.strength}</p>
-                                    <p>speed: {powerstats.speed}</p>
-                                    <Link className="link" to={`/${id}/${name}`}><button>More...</button></Link>
+                                    <Link className="link" to={`/${id}/${name}`}>
+                                        <div className="about-hero__img" style={{backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                                            <p className="about-hero__title">{name}</p>
+                                        </div>
+                                    </Link>
+                                    <div className="btn-box">
+                                        <span className="btn-round btn-round--small">?</span>
+                                        <span className="btn-round btn-round--no">&times;</span>
+                                        <span className="btn-round btn-round--yes">&#10004;</span>
+                                        <span className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></span>
+                                    </div>
                                 </div>
                             );
                         })
                     }
                 </div> 
             }
+
         </>
     )
 }
