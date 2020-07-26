@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getHeroPreview } from './requests';
+import Loader from './Loader.js';
 import { Link } from 'react-router-dom'; 
 
 function LandingPage() {
@@ -33,7 +34,7 @@ function LandingPage() {
         <> 
             <Link to="/settings"><i style={{fontSize: '30px'}}className="fas fa-cog"></i></Link>
             {errorText && <h1 className="about-hero__maintitle">{errorText}</h1>}
-            {!errorText && loading && <h1 className="about-hero__maintitle">loading</h1>}
+            {!errorText && loading && <div className="about-hero"><Loader/></div>}
 
             {!errorText && !loading &&
                 <div className="container__heroes">

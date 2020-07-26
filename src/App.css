@@ -36,6 +36,7 @@ i {
 
 button {
   cursor: pointer;
+  outline: none;
   font-family: inherit;
   padding: 5px;
   width: 70px;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getFullHero } from './requests';
+import Loader from './Loader.js';
 
 function HeroDetails() {
     const { id, name } = useParams();
     const [hero, setHero] = useState({});
-    const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(true);
     const {image, appearance, biography, powerstats, work} = hero;
 
@@ -22,13 +22,12 @@ function HeroDetails() {
     return (
         
         <>
-            { errorText && <h1>{errorText}</h1>}
-            { loading && <h1 className="about-hero__maintitle">loading {name} </h1>}
+            { loading && <div className="about-hero"><Loader/></div>}
 
             { !loading && 
             
             <div className="details-container"> 
-                <Link to="/" className="link link-homepage"><i className="icon-homepage fas fa-arrow-circle-left"></i></Link>
+                <Link to="/settings" className="link link-homepage"><i className="icon-homepage fas fa-arrow-circle-left"></i></Link>
                 <img src={image.url} alt={name} className="details-image"></img>
                 
                 <div className="details-box">

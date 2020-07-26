@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getHeroAppearance } from './requests';
 import { useParams, Link } from 'react-router-dom';
+import Loader from './Loader.js';
 
 function SearchResults() {
     const {gender, race} = useParams();
@@ -40,9 +41,11 @@ function SearchResults() {
         })
         setTimeout(() => {
             setFilteredResults(objectArray);
+            setLoading(false);
         }, 5000)
         
-        getResultsRace();
+        
+        //getResultsRace();
 
     }
 
@@ -73,18 +76,18 @@ function SearchResults() {
     return (
         <>
             <Link to="/settings"><i style={{fontSize: '30px'}}className="fas fa-cog"></i></Link>
-            {loading && <h1 className="about-hero__maintitle">loading results</h1>}
+            
 
-            {!loading && 
+            {loading && 
                 <main className="container">
                     <section className="container__heroes">
                         { errorText && <p className="about-hero__maintitle">{errorText}</p> }
-                      
+                        <div className="about-hero"><Loader/></div>
                     </section>
                 </main> 
             }
-            { filteredResults && 
-            <div>
+            { !loading && filteredResults && 
+            <main>
                 { filteredResults.map(hero => {
                     return (
                     <>
@@ -105,7 +108,7 @@ function SearchResults() {
                     </>
                     )
                 })} 
-            </div> }
+            </main> }
         </>
     )
 }
