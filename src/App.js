@@ -19,11 +19,11 @@ function App() {
                   <LandingPage />
                 </Route>
 
-                <Route path="/settings">
+                <Route exact path="/settings">
                   <Settings />
                 </Route>
 
-                <Route path="/search/:name">
+                <Route path="/settings/search/g/:gender/r/:race">
                   <SearchResults />  
                 </Route>
 

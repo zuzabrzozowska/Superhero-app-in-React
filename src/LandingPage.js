@@ -3,7 +3,7 @@ import { getHeroPreview } from './requests';
 import { Link } from 'react-router-dom'; 
 
 function LandingPage() {
-    const initialHeroesIDs = ['720', '69'];
+    const initialHeroesIDs = ['720', '708'];
     const [heroList, setHeroList] = useState([]);
     const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(true);
@@ -44,6 +44,7 @@ function LandingPage() {
                                     <Link className="link" to={`/${id}/${name}`}>
                                         <div className="about-hero__img" style={{backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                                             <p className="about-hero__title">{name}</p>
+                                            <div className="gradient"></div>
                                         </div>
                                     </Link>
                                     <div className="btn-box">

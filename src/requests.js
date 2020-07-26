@@ -8,15 +8,14 @@ export const getHeroPreview = async id => {
     const {data: powerstats} = await axios.get(`https://superheroapi.com/api/${APIkey}/${id}/powerstats`);
     const {data: image} = await axios.get(`https://superheroapi.com/api/${APIkey}/${id}/image`);
 
-    return { powerstats, url: image.url, name: powerstats.name, id }
+    return { powerstats, url: image.url, name: powerstats.name, id };
 }
 
-export const getHeroAppearence = async id => {
-    const {data} = await axios.get(`https://superheroapi.com/api/${APIkey}/${id}/appearance`);
-    return data;
-}
-export const getSearchedHeroesByName = name => {
-    return axios.get(`https://superheroapi.com/api/${APIkey}/search/${name}`);
+export const getHeroAppearance = async id => {
+    const {data: appearance} = await axios.get(`https://superheroapi.com/api/${APIkey}/${id}/appearance`);
+    const {data: image} = await axios.get(`https://superheroapi.com/api/${APIkey}/${id}/image`);
+
+    return { appearance, url: image.url };
 }
 
 export const getFullHero = async id => {
