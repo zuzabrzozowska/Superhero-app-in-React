@@ -42,10 +42,6 @@ button {
   width: 70px;
 }
 
-button:hover {
-  background-color: var(--lightViolet);
-}
-
 /*settings*/
 
 .fa-cog:hover {
@@ -62,6 +58,12 @@ button:hover {
 .settings__btn-box {
   display: flex;
 }
+
+.clicked-button {
+  background: var(--lightViolet);
+  color: white;
+}
+
 
 /*LandingPage*/
 
@@ -122,6 +124,7 @@ button:hover {
   font-size: 50px;
   box-shadow: 2px 4px 20px 2px #e16499;
 }
+
 .btn-round--yes {
   background: #00cb51;
   font-size: 30px;

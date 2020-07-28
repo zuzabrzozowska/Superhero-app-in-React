@@ -6,9 +6,11 @@ function Nav() {
   const [gender, setGender] = useState('');
 
   const filterRace = event => {
+    event.target.className = 'clicked-button';
     setRace(event.target.innerText);
   }
   const filterGender = event => {
+    event.target.className = 'clicked-button';
     setGender(event.target.innerText);
   }
   

@@ -29,7 +29,6 @@ function LandingPage() {
         setLoading(false);
     }
 
-
     return ( 
         <> 
             <Link to="/settings"><i style={{fontSize: '30px'}}className="fas fa-cog"></i></Link>

@@ -22,7 +22,6 @@ function SearchResults() {
         getResults();
     }, [])
 
-
     const getResults = () => {
         getAllHeroesIDs();
 
@@ -35,18 +34,18 @@ function SearchResults() {
               objectArray.push(data);
               if (gender !== 'All') {
                 if (race !== 'Other' && race !== 'All') {
-                    objectArray = objectArray.filter(item => {return (item.appearance.gender === `${gender}` && item.appearance.race === `${race}`) })
+                    objectArray = objectArray.filter(({appearance}) => {return (appearance.gender === `${gender}` && appearance.race === `${race}`) })
                 } else if (race === 'Other') {
-                    objectArray = objectArray.filter(item => {return (item.appearance.gender === `${gender}` && 
-                    item.appearance.race !== 'Human' && item.appearance.race !== 'Alien' && item.appearance.race !== 'Mutant') })
+                    objectArray = objectArray.filter(({appearance}) => {return (appearance.gender === `${gender}` && 
+                    appearance.race !== 'Human' && appearance.race !== 'Alien' && appearance.race !== 'Mutant') })
                 } else if (race === 'All') {
-                    objectArray = objectArray.filter(item => {return (item.appearance.gender === `${gender}`) })
+                    objectArray = objectArray.filter(({appearance}) => {return (appearance.gender === `${gender}`) })
                 }
               } else {
                   if (race !== 'Other' && race !== 'All') {
-                    objectArray = objectArray.filter(item => {return (item.appearance.race === `${race}`) })
+                    objectArray = objectArray.filter(({appearance}) => {return (appearance.race === `${race}`) })
                   } else if (race === 'Other') {
-                    objectArray = objectArray.filter(item => {return (item.appearance.race !== 'Human' && item.appearance.race !== 'Alien' && item.appearance.race !== 'Mutant') })
+                    objectArray = objectArray.filter(({appearance}) => {return (appearance.race !== 'Human' && appearance.race !== 'Alien' && appearance.race !== 'Mutant') })
                   } 
               }
             }) 
