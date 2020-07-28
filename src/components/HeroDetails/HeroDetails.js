@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getFullHero } from './requests';
-import Loader from './Loader.js';
+import { getFullHero } from '../../requests.js';
+import Loader from '../Loader/Loader.js';
 
 function HeroDetails() {
     const { id, name } = useParams();

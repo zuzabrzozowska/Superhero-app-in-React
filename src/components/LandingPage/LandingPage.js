@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getHeroPreview } from './requests';
-import Loader from './Loader.js';
+import { getHeroPreview } from '../../requests.js';
+import Loader from '../Loader/Loader.js';
 import { Link } from 'react-router-dom'; 
 
 function LandingPage() {
@@ -52,7 +52,7 @@ function LandingPage() {
                                         <span className="btn-round btn-round--small">?</span>
                                         <span className="btn-round btn-round--no">&times;</span>
                                         <span className="btn-round btn-round--yes">&#10004;</span>
-                                        <span className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></span>
+                                        <Link to={`/${id}/${name}`} className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></Link>
                                     </div>
                                 </div>
                             );

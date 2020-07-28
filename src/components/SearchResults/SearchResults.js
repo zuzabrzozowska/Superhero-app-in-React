@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getHeroAppearance } from './requests';
+import { getHeroAppearance } from '../../requests.js';
 import { useParams, Link } from 'react-router-dom';
-import Loader from './Loader.js';
+import Loader from '../Loader/Loader.js';
 
 function SearchResults() {
     const {gender, race} = useParams();
@@ -19,12 +19,11 @@ function SearchResults() {
     }
     
     useEffect(() => {
-        getResultsGender();
-        
+        getResults();
     }, [])
 
 
-    const getResultsGender = () => {
+    const getResults = () => {
         getAllHeroesIDs();
 
         ids.forEach(id => {
@@ -35,49 +34,32 @@ function SearchResults() {
               }
               objectArray.push(data);
               if (gender !== 'All') {
-                objectArray = objectArray.filter(item => {return (item.appearance.gender === `${gender}`) });
-              } 
+                if (race !== 'Other' && race !== 'All') {
+                    objectArray = objectArray.filter(item => {return (item.appearance.gender === `${gender}` && item.appearance.race === `${race}`) })
+                } else if (race === 'Other') {
+                    objectArray = objectArray.filter(item => {return (item.appearance.gender === `${gender}` && 
+                    item.appearance.race !== 'Human' && item.appearance.race !== 'Alien' && item.appearance.race !== 'Mutant') })
+                } else if (race === 'All') {
+                    objectArray = objectArray.filter(item => {return (item.appearance.gender === `${gender}`) })
+                }
+              } else {
+                  if (race !== 'Other' && race !== 'All') {
+                    objectArray = objectArray.filter(item => {return (item.appearance.race === `${race}`) })
+                  } else if (race === 'Other') {
+                    objectArray = objectArray.filter(item => {return (item.appearance.race !== 'Human' && item.appearance.race !== 'Alien' && item.appearance.race !== 'Mutant') })
+                  } 
+              }
             }) 
         })
         setTimeout(() => {
             setFilteredResults(objectArray);
             setLoading(false);
         }, 5000)
-        
-        
-        //getResultsRace();
-
-    }
-
-    const getResultsRace = () => {
-        let array = [];
-        filteredResults.forEach(id => {
-            getHeroAppearance(id).then(data => {
-              if (data.error) {
-                setErrorText(data.error);
-                return;
-              }
-              array.push(data);
-              if (race !== 'All' && race !== 'Other') {
-                array = array.filter(item => { return (item.appearance.race === `${race}`) });
-              } else if (race === 'Other') {
-                array = array.filter(item => {
-                  return (item.race !== 'Human' && item.race !== 'Alien' && item.race !== 'Mutant') 
-                });
-              }
-            }) 
-        })
-        setTimeout(() => {
-            setFilteredResults(array);
-        }, 5000)
-        setLoading(false);
     }
 
     return (
         <>
             <Link to="/settings"><i style={{fontSize: '30px'}}className="fas fa-cog"></i></Link>
-            
-
             {loading && 
                 <main className="container">
                     <section className="container__heroes">
@@ -98,11 +80,11 @@ function SearchResults() {
                                     <div className="gradient"></div>
                                 </div>
                             </Link>
-                            <div className="btn-box">
+                            <div className="btn-box"> 
                                 <span className="btn-round btn-round--small">?</span>
                                 <span className="btn-round btn-round--no">&times;</span>
                                 <span className="btn-round btn-round--yes">&#10004;</span>
-                                <span className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></span>
+                                <Link to={`/${hero.appearance.id}/${hero.appearance.name}`} className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></Link>
                             </div>
                         </div>
                     </>

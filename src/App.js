@@ -1,9 +1,9 @@
 import React from 'react';
 import './reset.css'; import './App.css'; 
-import LandingPage from './LandingPage.js';
-import Settings from './Settings.js';
-import SearchResults from './SearchResults.js';
-import HeroDetails from './HeroDetails.js';
+import LandingPage from './components/LandingPage/LandingPage.js';
+import Settings from './components/Settings/Settings.js';
+import SearchResults from './components/SearchResults/SearchResults.js';
+import HeroDetails from './components/HeroDetails/HeroDetails.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
