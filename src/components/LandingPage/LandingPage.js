@@ -60,7 +60,7 @@ function LandingPage() {
                     }
                 </div> 
             }
-            
+            <footer>Data thanks to<a href="https://superheroapi.com/" taget="_blank" className="link">SuperHero API</a></footer>
         </>
     )
 }

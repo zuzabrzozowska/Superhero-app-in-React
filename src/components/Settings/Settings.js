@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './Settings.css';
 
 function Nav() {
-  const [race, setRace] = useState('');
-  const [gender, setGender] = useState('');
+  const [race, setRace] = useState('All');
+  const [gender, setGender] = useState('All');
   const [chosenHeight, setChosenHeight] = useState('250');
 
   const filterRace = event => {

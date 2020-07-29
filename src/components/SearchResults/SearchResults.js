@@ -58,7 +58,6 @@ function SearchResults() {
 
     return (
         <>
-            <Link to="/settings"><i style={{fontSize: '30px'}}className="fas fa-cog"></i></Link>
             {loading && 
                 <main className="container">
                     <section className="container__heroes">

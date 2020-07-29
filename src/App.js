@@ -38,7 +38,6 @@ function App() {
             <Nav/>
         </main>
       </Router>
-      <footer>Data thanks to<a href="https://superheroapi.com/" taget="_blank" className="link">SuperHero API</a></footer>
     </>
   );
 
