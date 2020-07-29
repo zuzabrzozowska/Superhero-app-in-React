@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getFullHero } from '../../requests.js';
 import Loader from '../Loader/Loader.js';
+import './HeroDetails.css';
 
 function HeroDetails() {
     const { id, name } = useParams();
@@ -28,7 +29,7 @@ function HeroDetails() {
             
             <div className="details-container"> 
                 <Link to="/settings" className="link link-homepage"><i className="icon-homepage fas fa-arrow-circle-left"></i></Link>
-                <img src={image.url} alt={name} className="details-image"></img>
+                <div style={{backgroundImage: `url(${image.url})`, backgroundSize: 'cover', backgroundPosition: 'center'}} className="details-image" ></div>
                 
                 <div className="details-box">
                     <h1 className="about-hero__maintitle"> {name} </h1>

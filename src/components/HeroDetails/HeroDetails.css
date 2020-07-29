@@ -1,0 +1,35 @@
+.link-homepage {
+    position: absolute;
+    z-index: 999;
+    font-size: 50px;
+}
+  
+.details-container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.details-box {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+  
+.details-image {
+    border-radius: 0 0 15px 15px;
+    width: 95vw;
+    height: 45vh;
+    display: flex;
+    align-items: flex-end;
+}
+  
+.details-subtitle {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+  
+.bio {
+    margin: 15px 0;
+}

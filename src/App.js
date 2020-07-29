@@ -1,5 +1,6 @@
 import React from 'react';
 import './reset.css'; import './App.css'; 
+import Nav from './components/Nav/Nav.js';
 import LandingPage from './components/LandingPage/LandingPage.js';
 import Settings from './components/Settings/Settings.js';
 import SearchResults from './components/SearchResults/SearchResults.js';
@@ -9,7 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 function App() {
   
   return (
-    
+    <>
       <Router>
         <main>
             <div className="container">
@@ -23,7 +24,7 @@ function App() {
                   <Settings />
                 </Route>
 
-                <Route path="/settings/search/g/:gender/r/:race">
+                <Route path="/search/g/:gender/r/:race/maxHeight:height">
                   <SearchResults />  
                 </Route>
 
@@ -33,9 +34,12 @@ function App() {
           
               </Switch>
             </div>
+
+            <Nav/>
         </main>
       </Router>
-    
+      <footer>Data thanks to<a href="https://superheroapi.com/" taget="_blank" className="link">SuperHero API</a></footer>
+    </>
   );
 
 }

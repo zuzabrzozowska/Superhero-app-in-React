@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { getHeroPreview } from '../../requests.js';
 import Loader from '../Loader/Loader.js';
 import { Link } from 'react-router-dom'; 
+import './LandingPage.css';
 
 function LandingPage() {
-    const initialHeroesIDs = ['720', '708'];
+    const initialHeroesIDs = ['720'];
     const [heroList, setHeroList] = useState([]);
     const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(true);
@@ -31,7 +32,7 @@ function LandingPage() {
 
     return ( 
         <> 
-            <Link to="/settings"><i style={{fontSize: '30px'}}className="fas fa-cog"></i></Link>
+            
             {errorText && <h1 className="about-hero__maintitle">{errorText}</h1>}
             {!errorText && loading && <div className="about-hero"><Loader/></div>}
 
@@ -50,7 +51,7 @@ function LandingPage() {
                                     <div className="btn-box">
                                         <span className="btn-round btn-round--small">?</span>
                                         <span className="btn-round btn-round--no">&times;</span>
-                                        <span className="btn-round btn-round--yes">&#10004;</span>
+                                        <span className="btn-round btn-round--yes"><i className="fas fa-star icon-fav"></i></span>
                                         <Link to={`/${id}/${name}`} className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></Link>
                                     </div>
                                 </div>
@@ -59,7 +60,7 @@ function LandingPage() {
                     }
                 </div> 
             }
-
+            
         </>
     )
 }

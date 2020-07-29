@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import Loader from '../Loader/Loader.js';
 
 function SearchResults() {
-    const {gender, race} = useParams();
+    const {gender, race, height} = useParams();
     const [filteredResults, setFilteredResults] = useState([]);
     const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ function SearchResults() {
     let objectArray = [];
     
     const getAllHeroesIDs = () => {
-        for (let i = 1; i <= 50; i++) {
+        for (let i = 100; i <= 150; i++) {
             ids.push(i);
         }
     }

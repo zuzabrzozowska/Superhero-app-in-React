@@ -1,0 +1,48 @@
+.container__settings {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+  
+.settings__btn-box {
+    display: flex;
+}
+  
+.clicked-button {
+    background: var(--lightViolet);
+    color: white;
+    border: none;
+}
+
+.height-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 20vh;
+}
+
+input[type="range" i] {
+    position: relative;
+    font-family: inherit;
+    font-size: inherit;
+}
+input::before {
+    position: absolute;
+    content: '150';
+    height: 100px;
+    width: 100px;
+    top: -15px;
+    color: white;
+}
+input::after {
+    position: absolute;
+    content: '250';
+    top: -15px;
+    right: 0;
+    color: white;
+}
+
+.centerHeight {
+    text-align: center;
+}
