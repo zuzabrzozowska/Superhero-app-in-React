@@ -11,6 +11,7 @@ function SearchResults() {
 
     let ids = [];
     let objectArray = [];
+    let favHeroes = [];
     
     const getAllHeroesIDs = () => {
         for (let i = 100; i <= 150; i++) {
@@ -42,11 +43,11 @@ function SearchResults() {
                     objectArray = objectArray.filter(({appearance}) => {return (appearance.gender === `${gender}`) })
                 }
               } else {
-                  if (race !== 'Other' && race !== 'All') {
+                if (race !== 'Other' && race !== 'All') {
                     objectArray = objectArray.filter(({appearance}) => {return (appearance.race === `${race}`) })
-                  } else if (race === 'Other') {
+                } else if (race === 'Other') {
                     objectArray = objectArray.filter(({appearance}) => {return (appearance.race !== 'Human' && appearance.race !== 'Alien' && appearance.race !== 'Mutant') })
-                  } 
+                } 
               }
             }) 
         })
@@ -54,6 +55,11 @@ function SearchResults() {
             setFilteredResults(objectArray);
             setLoading(false);
         }, 5000)
+    }
+
+    const addHeroToFav = event => {
+       favHeroes.push(event.target.dataset.id); //add validation - is this id already on the list?
+       console.log(favHeroes);
     }
 
     return (
@@ -81,7 +87,7 @@ function SearchResults() {
                             <div className="btn-box"> 
                                 <span className="btn-round btn-round--small">?</span>
                                 <span className="btn-round btn-round--no">&times;</span>
-                                <span className="btn-round btn-round--yes">&#10004;</span>
+                                <span data-id={hero.appearance.id} onClick={addHeroToFav} className="btn-round btn-round--yes"><i data-id={hero.appearance.id} className="fas fa-star icon-fav"></i></span>
                                 <Link to={`/${hero.appearance.id}/${hero.appearance.name}`} className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></Link>
                             </div>
                         </div>

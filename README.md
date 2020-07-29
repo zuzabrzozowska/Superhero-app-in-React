@@ -7,3 +7,7 @@ Possible user interactions:
 - [x] deleting from Favourites
 - [ ] setting up user's profile (image, bio, powers)
 - [x] looking up the detailed profiles
+
+![Screenshot of the app](https://ibb.co/BB8NgM7)
+![Screenshot of the app](https://ibb.co/D1KGS2g)
+![Screenshot of the app](https://ibb.co/Br7S7dW)
