@@ -1,12 +1,23 @@
 import React from 'react';
-import { getHeroPreview } from '../../requests.js';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
-function Favourites() {
+function Favourites({favHeroes}) {
     
 
     return ( 
-        <h1>ulubione</h1>
+        <>
+        <h1>favourite heroes array: </h1>
+
+        {console.log({favHeroes})}
+
+        {favHeroes.map(item => {
+            return (
+                
+                <h1>{item.appearance.name}</h1>
+            )
+        })}
+        </>
+        
     )
 }
 

@@ -3,7 +3,7 @@ import { getHeroAppearance } from '../../requests.js';
 import { useParams, Link } from 'react-router-dom';
 import Loader from '../Loader/Loader.js';
 
-function SearchResults() {
+function SearchResults( {addHeroToFav} ) {
     const {gender, race, height} = useParams();
     const [filteredResults, setFilteredResults] = useState([]);
     const [errorText, setErrorText] = useState('');
@@ -11,7 +11,6 @@ function SearchResults() {
 
     let ids = [];
     let objectArray = [];
-    let favHeroes = [];
     
     const getAllHeroesIDs = () => {
         for (let i = 100; i <= 150; i++) {
@@ -47,7 +46,7 @@ function SearchResults() {
                     objectArray = objectArray.filter(({appearance}) => {return (appearance.race === `${race}`) })
                 } else if (race === 'Other') {
                     objectArray = objectArray.filter(({appearance}) => {return (appearance.race !== 'Human' && appearance.race !== 'Alien' && appearance.race !== 'Mutant') })
-                } 
+                } //add height filtering!
               }
             }) 
         })
@@ -55,11 +54,6 @@ function SearchResults() {
             setFilteredResults(objectArray);
             setLoading(false);
         }, 5000)
-    }
-
-    const addHeroToFav = event => {
-       favHeroes.push(event.target.dataset.id); //add validation - is this id already on the list?
-       console.log(favHeroes);
     }
 
     return (

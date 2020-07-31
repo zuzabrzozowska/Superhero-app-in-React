@@ -1,4 +1,14 @@
-/*LandingPage*/
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 
 .about-hero {
     display: flex;
@@ -74,3 +84,30 @@
     height: 40px;
     background: var(--lightViolet);
   }
+
+  .instructions-box {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .instruction {
+    font-size: 10px;
+    width: 30vw;
+    text-align: center;
+  }
+
+  .instruction::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900;
+    content: '\f107';
+    font-size: 16px;
+    position: absolute;
+    bottom: -15px;
+    color: var(--lightestViolet);
+    animation: jump 2s infinite;
+    width: 20vw;
+  }
+
+
+  

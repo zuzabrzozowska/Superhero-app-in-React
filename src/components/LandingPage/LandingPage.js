@@ -31,36 +31,39 @@ function LandingPage() {
     }
 
     return ( 
-        <> 
-            
-            {errorText && <h1 className="about-hero__maintitle">{errorText}</h1>}
-            {!errorText && loading && <div className="about-hero"><Loader/></div>}
+        <>
+            <div className="container__heroes">
+                {errorText && <h1 className="about-hero__maintitle">{errorText}</h1>}
+                {!errorText && loading && <div className="about-hero"><Loader/></div>}
 
-            {!errorText && !loading &&
-                <div className="container__heroes">
-                    {
-                        heroList.map(({id, url, name}) => {
-                            return (
-                                <div className="about-hero" key={id}>
-                                    <Link className="link" to={`/${id}/${name}`}>
-                                        <div className="about-hero__img" style={{backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-                                            <p className="about-hero__title">{name}</p>
-                                            <div className="gradient"></div>
-                                        </div>
-                                    </Link>
-                                    <div className="btn-box">
-                                        <span className="btn-round btn-round--small">?</span>
-                                        <span className="btn-round btn-round--no">&times;</span>
-                                        <span className="btn-round btn-round--yes"><i className="fas fa-star icon-fav"></i></span>
-                                        <Link to={`/${id}/${name}`} className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></Link>
+                {!errorText && !loading &&
+                    <> {
+                    heroList.map(({id, url, name}) => {
+                        return (
+                            <div className="about-hero" key={id}>
+                                <Link className="link" to={`/${id}/${name}`}>
+                                    <div className="about-hero__img" style={{backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                                        <p className="about-hero__title">{name}</p>
+                                        <div className="gradient"></div>
                                     </div>
+                                </Link>
+                                <div className="btn-box">
+                                    <span className="btn-round btn-round--small">?</span>
+                                    <span className="btn-round btn-round--no">&times;</span>
+                                    <span className="btn-round btn-round--yes"><i className="fas fa-star icon-fav"></i></span>
+                                    <Link to={`/${id}/${name}`} className="btn-round btn-round--small"><i className="fas fa-eye" style={{color: 'white'}}></i></Link>
                                 </div>
-                            );
-                        })
-                    }
-                </div> 
-            }
-            <footer>Data thanks to<a href="https://superheroapi.com/" taget="_blank" className="link">SuperHero API</a></footer>
+                            </div>
+                        );
+                    })
+                } </> 
+                }
+                <div className="instructions-box">
+                    <span className="instruction">set preferences</span>
+                    <span className="instruction">set your profile</span>
+                    <span className="instruction">check out your favourites</span>
+                </div>
+            </div>
         </>
     )
 }
