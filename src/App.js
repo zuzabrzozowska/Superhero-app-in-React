@@ -11,25 +11,21 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { getHeroAppearance } from './requests.js';
 
 function App() {
-  const [favIDs, setFavIDs] = useState([]);
-  const [favHeroes, setFavHeroes] = useState([]);
-
+  //const [favIDs, setFavIDs] = useState([]);
+  //const [favHeroes, setFavHeroes] = useState([]);
+    let favIDs = [];
+    let favHeroes = [];
 
   const addHeroToFav = event => {
-    let favIDsArray = [];
-    let listObjects = [];
-
-    //saves only the first hero (either empties the list of ids every time or async await problems or UseEffect)
+    favIDs = [];
+    const {id} = event.target.dataset;
     
-    favIDsArray.push(event.target.dataset.id); //add validation - is this id already on the list?
-    setFavIDs(favIDsArray);
+    favIDs.push(id);
     
     const fetchHeroes = async () => {
       for (const id of favIDs) {
         const data = await getHeroAppearance(id);
-  
-        listObjects.push(data);
-        setFavHeroes(listObjects);
+        favHeroes.push(data);
       }
     }
     fetchHeroes();

@@ -1,0 +1,20 @@
+.favourites-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.about-hero--favs {
+    width: 30%;
+    margin: 0;
+    height: auto;
+}
+
+.about-hero__img--favs {
+    height: 30vh;
+    width: auto;
+}
+
+.btn-box--favs {
+    width: auto;
+}
