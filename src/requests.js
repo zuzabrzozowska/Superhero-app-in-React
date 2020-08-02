@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const APIkey = '3084557188290018';
+const APIkey = '';
 //paste in your key
 
 export const getHeroPreview = async id => {
